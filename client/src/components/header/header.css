@@ -1,0 +1,37 @@
+header {
+    width: 100%;
+    min-height: 80px;
+    background: #282c34;
+    display: flex;
+    align-items: center;
+}
+
+.header__container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header a {
+    color: #eee;
+    text-transform: uppercase;
+}
+
+.logo img {
+    height: 48px;
+}
+
+header ul li {
+    display: inline-block;
+    padding: 10px 15px;
+    opacity: .7;
+}
+
+header ul li:hover {
+    opacity: 1;
+}
