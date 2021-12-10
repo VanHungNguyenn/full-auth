@@ -8,30 +8,32 @@ header {
 
 .header__container {
     max-width: 1200px;
-    width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-}
-
-header a {
-    color: #eee;
-    text-transform: uppercase;
+    justify-content: space-between;
+    padding: 10px;
+    width: 100%;
 }
 
 .logo img {
-    height: 48px;
+    height: 50px;
 }
 
-header ul li {
-    display: inline-block;
+.header__container ul {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+}
+
+.header__container ul li {
     padding: 10px 15px;
+    color: #fff;
     opacity: .7;
+    font-size: 16px;
+    font-weight: 500;
 }
 
-header ul li:hover {
-    opacity: 1;
+.header__container ul li i {
+    padding-right: 2px;
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Logo from '../../assets/images/vanhunglogo.png'
 
-const Header = () => {
+const AppHeader = () => {
 	return (
 		<header>
 			<div className='header__container'>
@@ -28,4 +28,4 @@ const Header = () => {
 	)
 }
 
-export default Header
+export default AppHeader

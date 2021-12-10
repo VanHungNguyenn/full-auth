@@ -7,6 +7,14 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.mb-2 {
+  margin-bottom: 20px;
+}
+
+.mb-1 {
+  margin-bottom: 10px;
+}
+
 .App {
   width: 100%;
   min-height: 100vh;
@@ -31,3 +39,4 @@ button {
 
 /* Header */
 @import url("./components/header/header.css");
+@import url("./components/body/auth/login.css");
