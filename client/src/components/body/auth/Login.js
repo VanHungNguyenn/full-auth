@@ -2,7 +2,10 @@ import React, { useState } from 'react'
 import { Form, Input, Button, Card } from 'antd'
 import { Link, useHistory } from 'react-router-dom'
 import axios from 'axios'
-import { showErrorMsg, showSuccessMsg } from '../../utils/Notification'
+import {
+	showErrorMsg,
+	showSuccessMsg,
+} from '../../utils/notification/Notification'
 import { dispathLogin } from '../../../redux/actions/authActions'
 import { useDispatch } from 'react-redux'
 
@@ -59,7 +62,6 @@ const Login = () => {
 						<Form.Item
 							label='Email'
 							name='email'
-							type='email'
 							htmlFor='email'
 							rules={[
 								{
@@ -70,6 +72,7 @@ const Login = () => {
 						>
 							<Input
 								value={email}
+								type='email'
 								name='email'
 								id='email'
 								onChange={handleChangeInput}
@@ -90,6 +93,7 @@ const Login = () => {
 						>
 							<Input.Password
 								value={password}
+								type='password'
 								name='password'
 								id='password'
 								onChange={handleChangeInput}
@@ -112,9 +116,9 @@ const Login = () => {
 						</Form.Item>
 						<Form.Item className='mb-1 flex-end'>
 							Or{'  '}
-							<a href='/register' className='link'>
+							<Link to='/register' className='link'>
 								Register now!
-							</a>
+							</Link>
 						</Form.Item>
 					</Form>
 				</Card>

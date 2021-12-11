@@ -39,4 +39,4 @@ button {
 
 /* Header */
 @import url("./components/header/header.css");
-@import url("./components/body/auth/login.css");
+@import url("./components/body/auth/auth.css");
