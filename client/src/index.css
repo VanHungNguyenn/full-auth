@@ -37,6 +37,22 @@ button {
   cursor: pointer;
 }
 
+.gutter-box {
+  padding: 8px 0;
+  background: #00a0e9;
+}
+
+.profile__page {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 40px;
+  padding: 0 10px;
+}
+
 /* Header */
 @import url("./components/header/header.css");
 @import url("./components/body/auth/auth.css");
+
+
+/* Media query */

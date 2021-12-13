@@ -5,6 +5,9 @@ import {
 	showErrorMsg,
 	showSuccessMsg,
 } from '../../utils/notification/Notification'
+import { Result, Button } from 'antd'
+import { SmileOutlined } from '@ant-design/icons'
+import { Link } from 'react-router-dom'
 
 const ActivateEmail = () => {
 	const { activation_token } = useParams()
@@ -25,7 +28,20 @@ const ActivateEmail = () => {
 		}
 	}, [activation_token])
 
-	return <div className='active_page'></div>
+	return (
+		<div className='active_page'>
+			<Result
+				icon={<SmileOutlined />}
+				title='Account has been activated!'
+				extra={
+					<Button type='primary'>
+						<Link to='/login'>Login</Link>
+					</Button>
+				}
+			/>
+			,
+		</div>
+	)
 }
 
 export default ActivateEmail

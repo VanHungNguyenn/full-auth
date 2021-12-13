@@ -6,7 +6,7 @@ header {
     align-items: center;
 }
 
-.header__container {
+.main__container {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
@@ -20,20 +20,39 @@ header {
     height: 50px;
 }
 
-.header__container ul {
+.main__container ul {
     display: flex;
     align-items: center;
     margin-bottom: 0;
 }
 
-.header__container ul li {
-    padding: 10px 15px;
+.main__container ul li {
     color: #fff;
     opacity: .7;
     font-size: 16px;
     font-weight: 500;
 }
 
-.header__container ul li i {
+.main__container ul li:last-child {
+    padding-left: 20px;
+}
+
+.main__container ul li i {
     padding-right: 2px;
+}
+
+.header__avatar {
+    display: flex;
+    align-items: center;
+}
+
+.header__avatar span:first-child {
+    margin-right: 6px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .logo img {
+        height: 40px;
+    }
 }

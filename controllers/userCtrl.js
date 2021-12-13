@@ -129,8 +129,7 @@ const userCtrl = {
 			const { email } = req.body
 			const user = await Users.findOne({ email })
 
-			if (!user)
-				res.status(400).json({ msg: 'This email does not exist' })
+			if (!user) res.status(400).json({ msg: 'Invalid email.' })
 
 			const access_token = createAccessToken({ id: user._id })
 			const url = `${CLIENT_URL}/user/reset/${access_token}`
@@ -147,7 +146,6 @@ const userCtrl = {
 
 			const passwordHash = await bcrypt.hash(password, 12)
 
-			console.log(req.user)
 			await Users.findByIdAndUpdate(
 				{ _id: req.user.id },
 				{
