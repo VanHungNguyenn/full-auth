@@ -18,14 +18,6 @@ const handleLogout = async () => {
 const menu = (
 	<Menu>
 		<Menu.Item key='1'>
-			<Link to='/profile'>
-				<Space>
-					<i className='fas fa-user'></i>
-					Profile
-				</Space>
-			</Link>
-		</Menu.Item>
-		<Menu.Item key='2'>
 			<Button type='default' onClick={handleLogout}>
 				<Link to='/'>
 					<Space>
@@ -46,27 +38,40 @@ const AppHeader = () => {
 
 	const userLink = () => {
 		return (
-			<li>
-				<Dropdown arrow={true} overlay={menu} placement='bottomRight'>
-					<Link to='#' className='header__avatar'>
-						<Avatar
-							src={
-								<Image
-									preview={false}
-									src={user.avatar}
-									style={{ width: 32 }}
-								/>
-							}
-							style={{
-								border: '1px solid #fff',
-								opacity: '.7',
-							}}
-						/>
-						{'  '}
-						<span>{user.name}</span>
+			<>
+				<li>
+					{' '}
+					<Link to='/profile'>
+						<i className='fas fa-user'></i>
+						Profile
 					</Link>
-				</Dropdown>
-			</li>
+				</li>
+				<li>
+					<Dropdown
+						arrow={true}
+						overlay={menu}
+						placement='bottomRight'
+					>
+						<Link to='#' className='header__avatar'>
+							<Avatar
+								src={
+									<Image
+										preview={false}
+										src={user.avatar}
+										style={{ width: 32 }}
+									/>
+								}
+								style={{
+									border: '1px solid #fff',
+									opacity: '.7',
+								}}
+							/>
+							{'  '}
+							<span>{user.name}</span>
+						</Link>
+					</Dropdown>
+				</li>
+			</>
 		)
 	}
 

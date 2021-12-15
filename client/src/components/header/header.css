@@ -38,7 +38,7 @@ header {
 }
 
 .main__container ul li i {
-    padding-right: 2px;
+    padding-right: 4px;
 }
 
 .header__avatar {
@@ -50,9 +50,7 @@ header {
     margin-right: 6px;
 }
 
-thead tr .ant-table-cell, tbody tr .ant-table-cell, .ant-table-title {
-    text-align: center;
-}
+
 
 
 @media screen and (max-width: 768px) {
