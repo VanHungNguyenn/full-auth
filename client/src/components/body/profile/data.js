@@ -6,11 +6,20 @@ export const columns = [
 		title: 'Id',
 		dataIndex: '_id',
 		key: '_id',
+		ellipsis: true,
+	},
+	{
+		title: 'Admin',
+		dataIndex: 'role',
+		key: 'role',
+		render: (boolean) => (boolean ? 'True' : 'False'),
+		width: '80px',
 	},
 	{
 		title: 'Name',
 		dataIndex: 'name',
 		key: 'name',
+		width: '130px',
 	},
 	{
 		title: 'Email',
@@ -18,15 +27,11 @@ export const columns = [
 		key: 'email',
 	},
 	{
-		title: 'Admin',
-		dataIndex: 'role',
-		key: 'role',
-		render: (boolean) => (boolean ? 'True' : 'False'),
-	},
-	{
 		title: 'Action',
 		dataIndex: 'action',
 		key: 'action',
+
+		width: '120px',
 		render: (text, record, i) => (
 			<Space>
 				<Tooltip title='Edit'>

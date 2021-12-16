@@ -274,6 +274,7 @@ const Profile = () => {
 								columns={columns}
 								bordered={true}
 								dataSource={users}
+								scroll={{ x: 500 }}
 							/>
 						</Col>
 					</Row>

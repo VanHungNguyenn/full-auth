@@ -72,6 +72,10 @@ thead tr .ant-table-cell, tbody tr .ant-table-cell, .ant-table-title {
 
 
 
+
+
+
+
 /* Header */
 @import url("./components/header/header.css");
 @import url("./components/body/auth/auth.css");
