@@ -32,12 +32,11 @@ const ForgotPassword = () => {
 			<div className='login_page'>
 				<Card
 					title='Forgot your password'
-					style={{ maxWidth: 600, width: '95%' }}
+					style={{ maxWidth: 550, width: '95%' }}
 				>
 					<Form
 						name='basic'
-						labelCol={{ span: 8 }}
-						wrapperCol={{ span: 16 }}
+						layout='vertical'
 						onFinish={handleSubmit}
 						autoComplete='off'
 					>
@@ -65,10 +64,7 @@ const ForgotPassword = () => {
 							/>
 						</Form.Item>
 
-						<Form.Item
-							wrapperCol={{ offset: 8, span: 16 }}
-							className='mb-1'
-						>
+						<Form.Item className='mb-1'>
 							<Button type='primary' htmlType='submit'>
 								Request reset link
 							</Button>

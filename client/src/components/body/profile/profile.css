@@ -44,3 +44,15 @@
     cursor: pointer;
     opacity: 0;
 }
+
+.button_return {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.spin {
+    text-align: center;
+    margin-top: 100px;
+    border-radius: 4px;
+    min-height: 100vh;
+}

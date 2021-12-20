@@ -54,18 +54,17 @@ const Register = () => {
 	return (
 		<>
 			<div className='login_page'>
-				<Card title='Register' style={{ maxWidth: 600, width: '95%' }}>
+				<Card title='Register' style={{ maxWidth: 550, width: '95%' }}>
 					<Form
 						name='basic'
-						labelCol={{ span: 8 }}
-						wrapperCol={{ span: 16 }}
 						onFinish={handleSubmit}
-						autoComplete='off'
+						layout='vertical'
 					>
 						<Form.Item
 							label='Name'
 							name='name'
 							htmlFor='name'
+							className='mb-1'
 							rules={[
 								{
 									required: true,
@@ -85,6 +84,7 @@ const Register = () => {
 						<Form.Item
 							label='Email'
 							name='email'
+							className='mb-1'
 							htmlFor='email'
 							rules={[
 								{
@@ -105,6 +105,7 @@ const Register = () => {
 						<Form.Item
 							label='Password'
 							name='password'
+							className='mb-1'
 							htmlFor='password'
 							rules={[
 								{
@@ -143,10 +144,7 @@ const Register = () => {
 							/>
 						</Form.Item>
 
-						<Form.Item
-							wrapperCol={{ offset: 8, span: 16 }}
-							className='mb-1'
-						>
+						<Form.Item className='mb-1'>
 							<Button type='primary' htmlType='submit'>
 								Submit
 							</Button>

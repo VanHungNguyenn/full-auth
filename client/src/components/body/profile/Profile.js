@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-import { Row, Col, Card, Form, Input, Button, Table } from 'antd'
-import { columns } from './data'
+import {
+	Row,
+	Col,
+	Card,
+	Form,
+	Input,
+	Button,
+	Table,
+	Space,
+	Tooltip,
+	Spin,
+} from 'antd'
+import { Link } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import {
 	showErrorMsg,
 	showSuccessMsg,
@@ -21,10 +33,16 @@ const initialState = {
 
 const Profile = () => {
 	const dispatch = useDispatch()
+	const history = useHistory()
 
 	const auth = useSelector((state) => state.auth)
 	const token = useSelector((state) => state.token)
 	const users = useSelector((state) => state.users)
+
+	const newUsers = []
+	users.forEach((user) => {
+		newUsers.push({ ...user, key: user._id })
+	})
 
 	const { user, isAdmin } = auth
 
@@ -34,7 +52,6 @@ const Profile = () => {
 
 	const [avatar, setAvatar] = useState(false)
 	const [loading, setLoading] = useState(false)
-	const [callback, setCallback] = useState(false)
 
 	useEffect(() => {
 		if (isAdmin) {
@@ -42,7 +59,128 @@ const Profile = () => {
 				dispatch(dispatchGetAllUsers(res))
 			})
 		}
-	}, [token, isAdmin, dispatch, callback])
+	}, [token, isAdmin, dispatch])
+
+	const handleDelete = async (id) => {
+		try {
+			if (user._id !== id) {
+				if (
+					window.confirm(
+						'Are you sure you want to delete this account?'
+					)
+				) {
+					setLoading(true)
+					await axios.delete(`/user/delete/${id}`, {
+						headers: {
+							Authorization: token,
+						},
+					})
+					setLoading(false)
+
+					history.push('/profile')
+				} else {
+					history.push('/profile')
+				}
+			} else {
+				showErrorMsg("Can't delete myselt")
+				history.push('/profile')
+			}
+		} catch (err) {
+			err.response.data.msg && showErrorMsg(err.response.data.msg)
+		}
+	}
+
+	const columnsOrders = [
+		{
+			title: 'Id',
+			dataIndex: '_id',
+			key: '_id',
+			ellipsis: true,
+			width: '120px',
+		},
+		{
+			title: 'Name',
+			dataIndex: 'name',
+			key: 'name',
+		},
+		{
+			title: 'Price',
+			dataIndex: 'price',
+			key: 'price',
+		},
+		{
+			title: 'Amount',
+			dataIndex: 'amount',
+			key: 'amount',
+		},
+		{
+			title: 'Note',
+			dataIndex: 'note',
+			key: 'note',
+		},
+	]
+
+	const columns = [
+		{
+			title: 'Id',
+			dataIndex: '_id',
+			key: '_id',
+			ellipsis: true,
+			width: '120px',
+		},
+		{
+			title: 'Admin',
+			dataIndex: 'role',
+			key: 'role',
+			render: (boolean) =>
+				boolean ? (
+					<i className='fas fa-check'></i>
+				) : (
+					<i className='fas fa-times'></i>
+				),
+			width: '80px',
+		},
+		{
+			title: 'Name',
+			dataIndex: 'name',
+			key: 'name',
+			width: '130px',
+		},
+		{
+			title: 'Email',
+			dataIndex: 'email',
+			key: 'email',
+			ellipsis: true,
+		},
+		{
+			title: 'Action',
+			dataIndex: 'action',
+			key: 'action',
+
+			width: '120px',
+			render: (text, record, i) => (
+				<Space>
+					<Tooltip title='Edit'>
+						<Button type='primary'>
+							<Link to={`/edit_user/${record._id}`}>
+								<i className='fas fa-edit'></i>
+							</Link>
+						</Button>
+					</Tooltip>
+					<Tooltip title='Delete'>
+						<Button
+							type='danger'
+							onClick={() => handleDelete(record._id)}
+						>
+							<Link to={`/delete_user/${record._id}`}>
+								<i className='fas fa-trash'></i>
+							</Link>
+						</Button>
+					</Tooltip>
+				</Space>
+			),
+		},
+	]
 
 	const handleChange = (e) => {
 		const { name, value } = e.target
@@ -132,7 +270,9 @@ const Profile = () => {
 	return (
 		<>
 			{loading ? (
-				<h3>Loading...</h3>
+				<div className='spin'>
+					<Spin tip='Loading...' size='large' />
+				</div>
 			) : (
 				<div className='profile__page'>
 					<Row gutter={[8, 16]}>
@@ -176,14 +316,14 @@ const Profile = () => {
 												<Col xs={24}>
 													<Form.Item
 														label='Email:'
-														name='email'
 														className='mb-1'
 													>
 														<Input
-															type='text'
+															type='email'
 															name='email'
 															id='email'
 															disabled={true}
+															value={user.email}
 														/>
 													</Form.Item>
 													<Form.Item
@@ -236,21 +376,6 @@ const Profile = () => {
 															}
 														/>
 													</Form.Item>
-													<Form.Item className='mb-1'>
-														<p
-															style={{
-																fontSize:
-																	'12px',
-																color: 'red',
-															}}
-														>
-															* If you update your
-															password here, you
-															will not be able to
-															login quickly using
-															google and facebook.
-														</p>
-													</Form.Item>
 
 													<Form.Item>
 														<Button
@@ -269,13 +394,22 @@ const Profile = () => {
 							</Card>
 						</Col>
 						<Col md={16} span={24}>
-							<Table
-								title={() => 'Users'}
-								columns={columns}
-								bordered={true}
-								dataSource={users}
-								scroll={{ x: 500 }}
-							/>
+							{user.role === 1 ? (
+								<Table
+									title={() => 'Users'}
+									columns={columns}
+									bordered={true}
+									dataSource={newUsers}
+									scroll={{ x: 500 }}
+								/>
+							) : (
+								<Table
+									title={() => 'Orders'}
+									columns={columnsOrders}
+									bordered={true}
+									scroll={{ x: 500 }}
+								/>
+							)}
 						</Col>
 					</Row>
 				</div>

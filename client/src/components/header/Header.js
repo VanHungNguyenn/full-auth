@@ -34,7 +34,8 @@ const AppHeader = () => {
 	const auth = useSelector((state) => state.auth)
 
 	const { user, isLogged } = auth
-	console.log('Header: ', user)
+
+	const image = user.avatar
 
 	const userLink = () => {
 		return (
@@ -57,7 +58,7 @@ const AppHeader = () => {
 								src={
 									<Image
 										preview={false}
-										src={user.avatar}
+										src={image}
 										style={{ width: 32 }}
 									/>
 								}
@@ -96,7 +97,7 @@ const AppHeader = () => {
 							</li>
 							<li>
 								<Link to='/login'>
-									<i className='fas fa-user'></i> Sign in
+									<i className='fas fa-user'></i> Login
 								</Link>
 							</li>
 						</>

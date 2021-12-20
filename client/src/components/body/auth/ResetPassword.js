@@ -67,8 +67,7 @@ const ResetPassword = () => {
 				>
 					<Form
 						name='basic'
-						labelCol={{ span: 8 }}
-						wrapperCol={{ span: 16 }}
+						layout='vertical'
 						onFinish={handleSubmit}
 						autoComplete='off'
 					>
@@ -80,6 +79,7 @@ const ResetPassword = () => {
 							label='Password'
 							name='password'
 							htmlFor='password'
+							className='mb-1'
 							rules={[
 								{
 									required: true,
@@ -117,10 +117,7 @@ const ResetPassword = () => {
 							/>
 						</Form.Item>
 
-						<Form.Item
-							wrapperCol={{ offset: 8, span: 16 }}
-							className='mb-1'
-						>
+						<Form.Item className='mb-1'>
 							<Button type='primary' htmlType='submit'>
 								Submit
 							</Button>
